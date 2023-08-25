@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/task")
 public class TaskController {
@@ -31,7 +31,7 @@ public class TaskController {
         return response;
     }
 
-    @PostMapping("create")
+    @PostMapping("")
     public void createTask(@RequestBody Task task){
         try{
             taskService.createTaks(task);
@@ -40,7 +40,6 @@ public class TaskController {
             log.error(String.format("Error en metodo createTaks: %s", e.getMessage()));
         }
     }
-
     @DeleteMapping("delete/{id}")
     public void deleteTask(@PathVariable Long id){
         try{
@@ -50,8 +49,8 @@ public class TaskController {
         }
     }
 
-    @PostMapping("update")
-    public void updateTask( @RequestBody Map<String,Object> requestBody){
+    @PostMapping("completed")
+    public void updateTaskCompleted( @RequestBody Map<String,Object> requestBody){
         try{
             taskService.markTaskAsCompleted((Long) requestBody.get("id"), (Boolean) requestBody.get("completed"));
         }catch (Exception e){
