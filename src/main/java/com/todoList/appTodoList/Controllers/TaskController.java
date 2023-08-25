@@ -31,7 +31,7 @@ public class TaskController {
         return response;
     }
 
-    @PostMapping("")
+    @PostMapping("create")
     public void createTask(@RequestBody Task task){
         try{
             taskService.createTaks(task);
