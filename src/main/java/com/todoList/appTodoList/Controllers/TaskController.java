@@ -2,6 +2,7 @@ package com.todoList.appTodoList.Controllers;
 
 import com.todoList.appTodoList.Entity.Task;
 import com.todoList.appTodoList.Service.TaskService;
+import com.todoList.appTodoList.dao.RequestBodyUpdateComplete;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,9 @@ public class TaskController {
     }
 
     @PostMapping("completed")
-    public void updateTaskCompleted( @RequestBody Map<String,Object> requestBody){
+    public void updateTaskCompleted( @RequestBody RequestBodyUpdateComplete requestBody){
         try{
-            taskService.markTaskAsCompleted((Long) requestBody.get("id"), (Boolean) requestBody.get("completed"));
+            taskService.markTaskAsCompleted( requestBody.getId(),requestBody.getCompleted());
         }catch (Exception e){
             log.error(String.format("Error en metodo createTaks: %s", e.getMessage()));
         }

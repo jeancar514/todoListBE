@@ -23,6 +23,7 @@ public class TaskService {
     public void markTaskAsCompleted(Long id, Boolean completed) {
         Task task = taskRepository.findById(id).orElse(null);
 
+
         if (task != null) {
             // Modificar la propiedad completada
             task.setCompleted(completed);
